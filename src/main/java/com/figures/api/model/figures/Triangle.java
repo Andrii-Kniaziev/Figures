@@ -16,12 +16,12 @@ public class Triangle extends Figure {
 
     @Override
     public double getArea() {
-        double halfPerim = getPerimetr() / 2;
+        double halfPerim = getPerimeter() / 2;
         return Math.sqrt(halfPerim * (halfPerim - side1) * (halfPerim - side2) * (halfPerim - side3));
     }
 
     @Override
-    public double getPerimetr() {
+    public double getPerimeter() {
         return side1 + side2 + side3;
     }
     
