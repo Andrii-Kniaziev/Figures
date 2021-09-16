@@ -1,7 +1,7 @@
 package com.figures.api.model.figures;
 
 public interface Calculable {
-    Double calculateArea();
+    double calculateArea();
 
-    Double calculatePerimetr();
+    double calculatePerimetr();
 }

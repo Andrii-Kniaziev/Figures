@@ -23,11 +23,11 @@ import org.springframework.validation.annotation.Validated;
 public class FigureCalculationController {
 
     @GetMapping("/square/{calculationType}")
-    public ResponseEntity<?> squareRestService(@PathVariable("calculationType") CalculationType calculationType,
-            @RequestParam("a") Double a) {
+    public ResponseEntity<CalculationResult> squareRestService(@PathVariable("calculationType") CalculationType calculationType,
+            @RequestParam("a") double a) {
 
         if (Validator.checkGreaterZero(a)) {
-            return createResponse(new Square(a), calculationType);
+            return ResponseEntity.ok().body(createCalculationResponse(new Square(a), calculationType));
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new CalculationError("Side of square must be greater than zero"));
@@ -35,11 +35,11 @@ public class FigureCalculationController {
     }
 
     @GetMapping("/circle/{calculationType}")
-    public ResponseEntity<?> circleRestService(@PathVariable("calculationType") CalculationType calculationType,
-            @RequestParam("a") Double radius) {
+    public ResponseEntity<CalculationResult> circleRestService(@PathVariable("calculationType") CalculationType calculationType,
+            @RequestParam("r") double radius) {
 
         if (Validator.checkGreaterZero(radius)) {
-            return createResponse(new Circle(radius), calculationType);
+            return ResponseEntity.ok().body(createCalculationResponse(new Circle(radius), calculationType));
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new CalculationError("Radius of circle must be greater than zero"));
@@ -47,12 +47,11 @@ public class FigureCalculationController {
     }
 
     @GetMapping("/rectangle/{calculationType}")
-    public ResponseEntity<?> rectangleRestService(
-            @PathVariable("calculationType") CalculationType calculationType, @RequestParam("a") Double a,
-            @RequestParam("b") Double b) {
+    public ResponseEntity<CalculationResult> rectangleRestService(@PathVariable("calculationType") CalculationType calculationType,
+            @RequestParam("a") double a, @RequestParam("b") double b) {
 
-        if (Validator.checkGreaterZero(a,b)) {        
-            return createResponse(new Rectangle(a, b), calculationType);
+        if (Validator.checkGreaterZero(a, b)) {
+            return ResponseEntity.ok().body(createCalculationResponse(new Rectangle(a, b), calculationType));
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new CalculationError("Sides of rectangle must be greater than zero"));
@@ -60,28 +59,21 @@ public class FigureCalculationController {
     }
 
     @GetMapping("/triangle/{calculationType}")
-    public ResponseEntity<?> triangleRestService(
-            @PathVariable("calculationType") CalculationType calculationType, @RequestParam("a") Double a,
-            @RequestParam("b") Double b, @RequestParam("c") Double c) {
-        
+    public ResponseEntity<CalculationResult> triangleRestService(@PathVariable("calculationType") CalculationType calculationType,
+            @RequestParam("a") double a, @RequestParam("b") double b, @RequestParam("c") double c) {
+
         if (Validator.checkGreaterZero(a, b, c)) {
-            return createResponse(new Triangle(a, b, c), calculationType);
+            return ResponseEntity.ok().body(createCalculationResponse(new Triangle(a, b, c), calculationType));
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new CalculationError("Sides of triangle must be greater than zero"));
         }
     }
 
-    public ResponseEntity<CalculationResponse> createResponse(Figure figure, CalculationType calculationType) {
-        CalculationResponse response = null;
-
-        if (calculationType == CalculationType.AREA) {
-            response = new CalculationResponse(calculationType, figure.calculateArea());
-            return ResponseEntity.ok(response);
-        } else {
-            response = new CalculationResponse(calculationType, figure.calculatePerimetr());
-            return ResponseEntity.ok(response);
-        }
+    private CalculationResponse createCalculationResponse(Figure figure, CalculationType calculationType) {
+        double calculationResult = calculationType == CalculationType.AREA ? figure.calculateArea()
+                : figure.calculatePerimetr();
+        return new CalculationResponse(calculationType, calculationResult);
     }
 }
 

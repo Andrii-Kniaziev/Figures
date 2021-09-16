@@ -1,6 +1,6 @@
 package com.figures.api.controller;
 
-public class CalculationError {
+public class CalculationError extends CalculationResult {
     private String errorMessage;
 
     public CalculationError(String errorMessage) {

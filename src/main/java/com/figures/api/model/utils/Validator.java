@@ -1,10 +1,10 @@
 package com.figures.api.model.utils;
 
 public class Validator {
-    public static Boolean checkGreaterZero(Double...args) {
-        Boolean accumulator = true;
+    public static boolean checkGreaterZero(double...args) {
+        boolean accumulator = true;
 
-        for(Double d: args){
+        for(double d: args){
             accumulator = (d > 0) && accumulator;
         }
 

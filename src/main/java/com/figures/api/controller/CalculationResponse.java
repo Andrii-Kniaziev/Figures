@@ -2,11 +2,11 @@ package com.figures.api.controller;
 
 import com.figures.api.model.types.CalculationType;
 
-public class CalculationResponse {
+public class CalculationResponse extends CalculationResult {
     private CalculationType calculationType;
-    private Double result;
+    private double result;
 
-    public CalculationResponse(CalculationType calculationType, Double result) {
+    public CalculationResponse(CalculationType calculationType, double result) {
         this.calculationType = calculationType;
         this.result = result;
     }
@@ -15,7 +15,7 @@ public class CalculationResponse {
         return calculationType;
     }
 
-    public Double getResult() {
+    public double getResult() {
         return result;
     }
 }
