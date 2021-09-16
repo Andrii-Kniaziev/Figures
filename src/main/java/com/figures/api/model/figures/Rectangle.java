@@ -13,12 +13,12 @@ public class Rectangle extends Figure {
     }
 
     @Override
-    public double calculateArea() {
+    public double getArea() {
         return side1 * side2;
     }
 
     @Override
-    public double calculatePerimetr() {
+    public double getPerimetr() {
         return (side1 + side2) * 2;
     }
 }

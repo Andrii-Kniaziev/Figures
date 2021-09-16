@@ -71,8 +71,8 @@ public class FigureCalculationController {
     }
 
     private CalculationResponse createCalculationResponse(Figure figure, CalculationType calculationType) {
-        double calculationResult = calculationType == CalculationType.AREA ? figure.calculateArea()
-                : figure.calculatePerimetr();
+        double calculationResult = calculationType == CalculationType.AREA ? figure.getArea()
+                : figure.getPerimetr();
         return new CalculationResponse(calculationType, calculationResult);
     }
 }

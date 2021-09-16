@@ -11,12 +11,12 @@ public class Circle extends Figure {
     }
     
     @Override
-    public double calculateArea() {
+    public double getArea() {
         return Math.PI * Math.pow(radius, 2);
     }
 
     @Override
-    public double calculatePerimetr() {
+    public double getPerimetr() {
         return 2 * Math.PI * radius;
     }
 }

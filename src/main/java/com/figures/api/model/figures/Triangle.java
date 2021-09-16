@@ -15,13 +15,13 @@ public class Triangle extends Figure {
     }
 
     @Override
-    public double calculateArea() {
-        double halfPerim = calculatePerimetr() / 2;
+    public double getArea() {
+        double halfPerim = getPerimetr() / 2;
         return Math.sqrt(halfPerim * (halfPerim - side1) * (halfPerim - side2) * (halfPerim - side3));
     }
 
     @Override
-    public double calculatePerimetr() {
+    public double getPerimetr() {
         return side1 + side2 + side3;
     }
     

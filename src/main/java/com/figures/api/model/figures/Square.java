@@ -11,12 +11,12 @@ public class Square extends Figure {
     }
     
     @Override
-    public double calculateArea() {
+    public double getArea() {
         return Math.pow(a, 2);
     }
 
     @Override
-    public double calculatePerimetr() {
+    public double getPerimetr() {
         return a * 4;
     }
 }
