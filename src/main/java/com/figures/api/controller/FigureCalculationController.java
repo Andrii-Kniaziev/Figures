@@ -22,6 +22,11 @@ import org.springframework.validation.annotation.Validated;
 @Validated
 public class FigureCalculationController {
 
+    @GetMapping("/")
+    public ResponseEntity<String> hello() {
+        return ResponseEntity.ok().body("Hello at F-Calculator");
+    }
+
     @GetMapping("/square/{calculationType}")
     public ResponseEntity<CalculationResult> squareRestService(@PathVariable("calculationType") CalculationType calculationType,
             @RequestParam("a") double a) {
